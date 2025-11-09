@@ -1,0 +1,24 @@
+@import "./variable";
+@import "./hero";
+@import "./header";
+@import "./button";
+@import "./products";
+@import "./productsbuy";
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: $color-dark-bg;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  // padding: 6rem 0;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="./css/index.css" />
+
+
+
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Flowbite -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <!-- Flowbite -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
+</head>
+
+<body>
+    <div class="admin-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar__logo">
+                <i class="fas fa-mobile-alt"></i> Admin
+            </div>
+            <ul class="sidebar__menu">
+                <li class="active"><i class="fas fa-box"></i> Sản phẩm</li>
+                <li><i class="fas fa-users"></i> Khách hàng</li>
+                <li><i class="fas fa-chart-bar"></i> Báo cáo</li>
+                <li><i class="fas fa-cog"></i> Cài đặt</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="main">
+            <header class="header">
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+                <h1>Quản lý sản phẩm</h1>
+                <div class="user-info">
+                    <span>Admin</span>
+                    <img src="https://img.freepik.com/premium-photo/sales-manager-digital-avatar-generative-ai_934475-9076.jpg"
+                        alt=" Admin avatar">
+                </div>
+            </header>
+
+            <section class="content">
+                <div class="content-header">
+
+                    <!-- nút thêm sản phẩm -->
+                    <button id="addproduct" class="btn btn-primary btn-add-product" data-modal-target="crud-modal"
+                        data-modal-toggle="crud-modal"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
+
+                    <!-- ô tìm kiếm -->
+                    <div class="search-box">
+                        <input id="search-box" type="text" placeholder="Tìm sản phẩm..." />
+                        <i class="fas fa-search"></i>
+                    </div>
+
+                    <!-- sắp xếp -->
+                    <div class="sort-box flex items-center gap-3">
+                        <label for="sortSelect" class="font-medium text-gray-700">
+                            Sắp xếp theo giá:
+                        </label>
+                        <select id="sortSelect" class="px-4 py-2 border border-gray-300 rounded-xl shadow-sm 
+             focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                            <option value="none">Không sắp xếp</option>
+                            <option value="ascending">⬆ Tăng dần</option>
+                            <option value="descending">⬇ Giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <!-- Main modal -->
+                <div id="crud-modal" tabindex="-1" aria-hidden="true"
+                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                            <!-- Modal header -->
+                            <div
+                                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white" id="themsp">
+                                    Thêm sản phẩm
+                                </h3>
+                                <button type="button"
+                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    data-modal-toggle="crud-modal" id="close_modal">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <form class="p-4 md:p-5" id="formmodal">
+                                <div class="grid gap-4 mb-4 grid-cols-2">
+
+                                    <div class="col-span-2">
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên sản
+                                            phẩm</label>
+                                        <input name="name" id="name"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Nhập tên sản phẩm">
+                                        <span class="sp-thongbao text-red-500 text-sm mt-1 block italic"
+                                            id="tbname"></span>
+                                    </div>
+
+
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="price"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Giá</label>
+                                        <input name="price" id="price"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Nhập giá sản phẩm">
+                                        <span class="sp-thongbao text-red-500 text-sm mt-1 block italic"
+                                            id="tbprice"></span>
+                                    </div>
+
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="category"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Loại</label>
+                                        <select id="category"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <option selected="">Chọn loại điện thoại</option>
+                                            <option value="Samsung">Samsung</option>
+                                            <option value="Iphone">Iphone</option>
+                                        </select>
+                                        <span class="sp-thongbao text-red-500 text-sm mt-1 block italic"
+                                            id="tbtype"></span>
+                                    </div>
+
+                                    <div class="col-span-2">
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hình
+                                            ảnh</label>
+                                        <input name="name" id="img"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Nhập Hình ảnh sản phẩm">
+                                        <span class="sp-thongbao text-red-500 text-sm mt-1 block italic"
+                                            id="tbimg"></span>
+                                    </div>
+
+                                    <div class="col-span-2">
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Màn
+                                            hình</label>
+                                        <input name="name" id="screen"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Nhập Màn hình sản phẩm">
+                                        <span class="sp-thongbao text-red-500 text-sm mt-1 block italic"
+                                            id="tbscreen"></span>
+                                    </div>
+
+                                    <div class="col-span-2">
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Camera
+                                            sau</label>
+                                        <input name="name" id="backCamera"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Nhập Camera sau sản phẩm">
+                                        <span class="sp-thongbao text-red-500 text-sm mt-1 block italic"
+                                            id="tbbackCamera"></span>
+                                    </div>
+
+                                    <div class="col-span-2">
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Camera
+                                            trước</label>
+                                        <input name="name" id="frontCamera"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Nhập Camera trước sản phẩm">
+                                        <span class="sp-thongbao text-red-500 text-sm mt-1 block italic"
+                                            id="tbfrontCamera"></span>
+                                    </div>
+
+                                    <div class="col-span-2">
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô
+                                            tả</label>
+                                        <input name="name" id="desc"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Nhập Mô tả sản phẩm">
+                                        <span class="sp-thongbao text-red-500 text-sm mt-1 block italic"
+                                            id="tbdesc"></span>
+                                    </div>
+
+                                    <!-- <div class="col-span-2">
+                      <label for="description"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
+                      <textarea id="description" rows="4"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Mô tả"></textarea>
+                    </div> -->
+
+                                </div>
+
+
+                                <div id="btn_footermodal">
+                                    <!-- <button type="submit"
+                    class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Thêm sản phẩm mới
+                  </button> -->
+
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="table-container">
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Màn hình</th>
+                                <th>Camera sau</th>
+                                <th>Camera trước</th>
+                                <th>Mô tả</th>
+                                <th>Loại</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-list">
+                            <!-- Demo data -->
+                            <!-- <tr>
+                <td>1</td>
+                <td>
+                  <img src="https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-hh-600x600.jpg" alt="">
+                </td>
+                <td>iPhone X</td>
+                <td>$1000</td>
+                <td>Screen 68</td>
+                <td>2 camera 12 MP</td>
+                <td>7 MP</td>
+                <td>Thiết kế mang tính đột phá</td>
+                <td>iPhone</td>
+                <td class="actions">
+                  <button class="btn-edit">
+                    <i class="fa-solid fa-pencil"></i>
+                  </button>
+                  <button class="btn-delete">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr> -->
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"
+        integrity="sha512-h9644v03pHqrIHThkvXhB2PJ8zf5E9IyVnrSfZg8Yj8k4RsO4zldcQc4Bi9iVLUCCsqNY0b4WXVV4UB+wbWENA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script type="module" src="./src/index.js"></script>
+
+</body>
+
+</html>

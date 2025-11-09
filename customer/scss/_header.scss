@@ -1,0 +1,75 @@
+.header {
+  margin-top: 0px;
+  background-color: transparent;
+  padding: 2rem 0;
+  position: fixed;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  top: 0;
+  z-index: 100;
+  background-color: #181c31;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+// img {
+//   height: 30px;
+// }
+
+.menu {
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+
+    li a {
+      font-size: 1.25rem;
+      text-decoration: none;
+      color: #cbd5e1;
+      font-weight: 500;
+      transition: color 0.2s ease;
+
+      &.active,
+      &:hover {
+        color: rgb(2 101 240);
+      }
+    }
+  }
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .signin {
+    font-size: 1.25rem;
+    text-decoration: none;
+    font-weight: 500;
+    color: #cbd5e1;
+    transition: color 0.2s ease;
+    &:hover {
+      color: rgb(2 101 240);
+    }
+  }
+
+  .signup {
+    font-size: 1.25rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    background-color: #235cd9;
+    text-decoration: none;
+    font-weight: 500;
+    color: #cbd5e1;
+    transition: background-color 0.2s ease;
+    &:hover {
+      background-color: rgb(2 101 240);
+    }
+  }
+}

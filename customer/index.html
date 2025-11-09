@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOILID</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./img/logo-dark.svg" alt="">
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Docs</a></li>
+                    <li><a href="#">Supprots</a></li>
+
+                </ul>
+            </nav>
+            <div class="auth">
+                <a href="#" class="signin">Sign In</a>
+                <a href="#" class="signup">Sign Up</a>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h4>🔥 Solid - A Complete SaaS Starter Template for SaaS</h4>
+                <h1>Robust SaaS Boilerplate and Starter forNext.js</h1>
+                <p>Packed with all the key integrations you need for swift SaaS startup launch, including -
+                    Authentication, Database, Sanity Blog, Essential UI Components, Business Pages and More. Built-winth
+                    - Next.js, React 18 and TypeScript.</p>
+                <button class="btn-primary">Get Started</button>
+            </div>
+            <div class="hero-img">
+                <img src="./img/hero-dark.svg" alt="">
+            </div>
+        </div>
+
+    </section>
+    <section class="features">
+        <div class="title">
+            <a>SOILID FEATURES</a>
+            <h2>Feature Product</h2>
+            <p>Phones that are groundbreaking in design and technology this year</p>
+        </div>
+        <div id="product-list">
+            <div class="product-card">
+                <img src="">
+                <h3></h3>
+                <p class="brand"></p>
+                <p class="desc"></p>
+
+                <ul class="specs">
+                    <li><strong>Màn hình:</strong></li>
+                    <li><strong>Camera trước:</strong> </li>
+                    <li><strong>Camera sau:</strong> </li>
+                </ul>
+
+                <div class="price"></div>
+                <button class="buy-btn">Buy now</button>
+            </div>
+
+        </div>
+        <hr color="#555" style="margin-top: 30px;">
+    </section>
+    <section class="product-section">
+        <div class="filter">
+            <label for="filter">Loc theo loai:</label>
+            <select name="" id="filter">
+                <option value="Tat ca">Tat ca</option>
+                <option value=" Iphone">Iphone</option>
+                <option value="Samsung">SamSung</option>
+            </select>
+        </div>
+
+        <div id="productBuy" class="product-list"></div>
+        <h2>🛒 Giỏ hàng</h2>
+        <div id="cartList" class="cart-list"></div>
+        <p id="totalPrice"></p>
+        <button id="checkoutBtn" onclick="checkout()">Thanh toán</button>
+
+
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"
+        integrity="sha512-h9644v03pHqrIHThkvXhB2PJ8zf5E9IyVnrSfZg8Yj8k4RsO4zldcQc4Bi9iVLUCCsqNY0b4WXVV4UB+wbWENA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="./controller/main.js"></script>
+</body>
+
+</html>
